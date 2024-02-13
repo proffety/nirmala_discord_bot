@@ -1,7 +1,11 @@
 import discord
 import json
-token = json.load(config.json)
-print(token)
+
+with open("config.json", "r") as f:
+    data = json.load(f)
+
+token = data["token"]
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -19,4 +23,4 @@ async def on_message(message):
     if message.content.startswith('/kelvin'):
         await message.channel.send('macaco')
 
-client.run('')
+client.run(token)
